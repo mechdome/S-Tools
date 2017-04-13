@@ -374,13 +374,15 @@
     <string name="kernel_info">Kernel-Informationen</string>
     <string name="kernel">Kernel</string>
     <string name="total_state_time">Gesamte CPU-Zeit</string>
+    <string name="about_mechdome">About MechDome</string>
+    <string name="settings_about_mechdome">This app is converted to iOS using MechDome.</string>
 
     <string name="about_developer">Entwickler</string>
-    <string name="about_follow">Bei Google+ folgen</string>
+    <string name="about_follow">iOS version by MechDome</string>
     <string name="about_thanks">Vielen Dank an diese Open-Source-Projekte:</string>
     <string name="action_ok">Okay</string>
     <string name="cpu_no_states">Keine Zustandsdatei gefunden. Sind Sie sicher, dass ihr Mobiltelefon kompatibel ist?\n\nWenn Sie ein Custom-ROM oder einen besonderen Kernel benutzen, kontaktieren Sie bitte deren Entwickler, dass die CPU-Zustandsdatei nicht lesbar ist.</string>
-    <string name="recommend_content">\nIch empfehle dir diese Anwendung, um die Übersicht über CPU-Daten, Gerätesensoren und vieles mehr zu bewahren: \n\n</string>
+    <string name="recommend_content">\nIch empfehle dir diese Anwendung, um die Übersicht über Daten, Gerätesensoren und vieles mehr zu bewahren: \n\n</string>
     <string name="recommend_choose">Wähle aus</string>
     <string name="toast_clipboard">%1$s in die Zwischenablage kopiert</string>
     <string name="cpu_deep_sleep">Tiefschlaf</string>

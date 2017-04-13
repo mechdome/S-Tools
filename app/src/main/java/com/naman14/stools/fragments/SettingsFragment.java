@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mechdome.aboutmechdome.AboutMechDomeActivity;
 import com.naman14.stools.R;
 import com.naman14.stools.util.HelpUtils;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by naman on 30/01/15.
@@ -20,12 +23,9 @@ public class SettingsFragment extends Fragment {
 
 
 
-    String Urlrate = "https://play.google.com/store/apps/details?id=com.naman14.stools";
-    String Urlgithub="https://github.com/naman14/S-Tools";
-    String Urldonate="https://play.google.com/store/apps/details?id=com.naman14.stoolsp";
+    String Urlgithub="https://github.com/mechdome/S-Tools";
 
-
-    ImageView github,rate,share;
+    ImageView github,share;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +36,6 @@ public class SettingsFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_settings, container,
                 false);
         github=(ImageView) v.findViewById(R.id.github);
-        rate=(ImageView) v.findViewById(R.id.rate);
         share=(ImageView) v.findViewById(R.id.share);
 
         ImageView photo1 = (ImageView)v.findViewById(R.id.photo1);
@@ -75,36 +74,6 @@ public class SettingsFragment extends Fragment {
 
         });
 
-        ImageView photo3 = (ImageView)v.findViewById(R.id.photo3);
-        photo3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent email =new
-                        Intent(Intent.ACTION_SENDTO);
-                email.setData(Uri.parse("mailto"));
-                email.putExtra(Intent.EXTRA_EMAIL,new
-                        String[]{"namandwivedi14@gmail.com"});
-                email.setType("message/rfc822");
-                startActivity(email);
-            }
-
-
-        });
-        TextView text3 = (TextView)v.findViewById(R.id.text3);
-        text3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent email =new
-                        Intent(Intent.ACTION_SEND);
-
-                email.putExtra(Intent.EXTRA_EMAIL,new
-                        String[]{"namandwivedi14@gmail.com"});
-                email.setType("message/rfc822");
-                startActivity(email);
-            }
-
-        });
-
         github.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,14 +82,7 @@ public class SettingsFragment extends Fragment {
                 startActivity(i);
             }
         });
-        rate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(Urlrate));
-                startActivity(i);
-            }
-        });
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,17 +90,16 @@ public class SettingsFragment extends Fragment {
                 i.setType("text/plain");
                 i.putExtra(Intent.EXTRA_SUBJECT, "S Tools+");
                 String sAux = getActivity().getString(R.string.recommend_content);
-                sAux = sAux + "https://play.google.com/store/apps/details?id=com.naman14.stools \n\n";
                 i.putExtra(Intent.EXTRA_TEXT, sAux);
                 startActivity(Intent.createChooser(i, getActivity().getString(R.string.recommend_choose)));
             }
         });
-        TextView donate =(TextView) v.findViewById(R.id.donate);
-        donate.setOnClickListener(new View.OnClickListener() {
+
+        TextView mechdome = (TextView) v.findViewById(R.id.aboutmechdome);
+        mechdome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(Urldonate));
+                Intent i = new Intent(getActivity(), AboutMechDomeActivity.class);
                 startActivity(i);
             }
         });

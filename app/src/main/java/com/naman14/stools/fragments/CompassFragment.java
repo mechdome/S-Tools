@@ -13,6 +13,7 @@ import android.location.LocationProvider;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,15 @@ public class CompassFragment extends Fragment {
     public CompassFragment(){}
     private final float MAX_ROATE_DEGREE = 1.0f;
     private SensorManager mSensorManager;
+
     private Sensor mOrientationSensor;
+    private Sensor gsensor;
+    private Sensor msensor;
+    private float azimuth = 0f;
+    private float currectAzimuth = 0;
+    private float[] mGravity = new float[3];
+    private float[] mGeomagnetic = new float[3];
+
     private LocationManager mLocationManager;
     private String mLocationProvider;
     private float mDirection;
@@ -109,9 +118,9 @@ public class CompassFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (mOrientationSensor != null) {
-            mSensorManager.registerListener(mOrientationSensorEventListener, mOrientationSensor,
-                    SensorManager.SENSOR_DELAY_GAME);
+        if (msensor != null && gsensor != null) {
+            mSensorManager.registerListener(mOrientationSensorEventListener, msensor, SensorManager.SENSOR_DELAY_GAME);
+            mSensorManager.registerListener(mOrientationSensorEventListener, gsensor, SensorManager.SENSOR_DELAY_GAME);
         }
         mStopDrawing = false;
         mHandler.postDelayed(mCompassViewUpdater, 20);
@@ -121,7 +130,7 @@ public class CompassFragment extends Fragment {
     public void onPause() {
         super.onPause();
         mStopDrawing = true;
-        if (mOrientationSensor != null) {
+        if (msensor != null && gsensor != null) {
             mSensorManager.unregisterListener(mOrientationSensorEventListener);
         }
         if (mLocationProvider != null) {
@@ -135,7 +144,8 @@ public class CompassFragment extends Fragment {
     private void initServices() {
         // sensor manager
         mSensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-        mOrientationSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        msensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        gsensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
 
         // location manager
         mLocationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
@@ -295,8 +305,45 @@ public class CompassFragment extends Fragment {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-            float direction = event.values[0] * -1.0f;
-            mTargetDirection = normalizeDegree(direction);
+
+            final float alpha = 0.97f;
+            try{
+                synchronized (this) {
+                    if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                        Log.i(" Accelerometer:0 ",Float.toString(event.values[0]) + " Accelerometer:1 " + Float.toString(event.values[1]) + " Accelerometer:2 " + Float.toString(event.values[2]));
+                        mGravity[0] = alpha * mGravity[0] + (1 - alpha)
+                                * event.values[0];
+                        mGravity[1] = alpha * mGravity[1] + (1 - alpha)
+                                * event.values[1];
+                        mGravity[2] = alpha * mGravity[2] + (1 - alpha)
+                                * event.values[2];
+                    }
+
+                    if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+                        Log.i("MagnetometerB:0",Float.toString(event.values[0]) + "MagnetometerB:1" + Float.toString(event.values[1]) + "MagnetometerB:2" + Float.toString(event.values[2]));
+                        mGeomagnetic[0] = alpha * mGeomagnetic[0] + (1 - alpha)
+                                * event.values[0];
+                        mGeomagnetic[1] = alpha * mGeomagnetic[1] + (1 - alpha)
+                                * event.values[1];
+                        mGeomagnetic[2] = alpha * mGeomagnetic[2] + (1 - alpha)
+                                * event.values[2];
+                    }
+
+                    float R[] = new float[9];
+                    float I[] = new float[9];
+                    boolean success = SensorManager.getRotationMatrix(R, I, mGravity, mGeomagnetic);
+                    if (success) {
+                        float orientation[] = new float[3];
+                        SensorManager.getOrientation(R, orientation);
+                        mTargetDirection = (azimuth + 360) % 360;
+                        mTargetDirection = mTargetDirection * -1.0f;
+                        azimuth = (float) Math.toDegrees(orientation[0]); // orientation
+                    }
+                }
+            }catch(Exception e){
+                Log.e("NANDU", "error", e);
+                e.printStackTrace();
+            }
         }
 
         @Override

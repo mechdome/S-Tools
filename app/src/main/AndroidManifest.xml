@@ -34,7 +34,7 @@
             android:theme="@style/AppThemeNoToolbar"
             >
         </activity>
-
+        <meta-data android:name="md_remove_ads" android:value="com.naman14.stools.MechDomeAd" />
     </application>
 
 </manifest>

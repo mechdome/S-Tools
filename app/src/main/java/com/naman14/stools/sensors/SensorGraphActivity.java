@@ -124,7 +124,9 @@ public class SensorGraphActivity extends Activity implements View.OnTouchListene
 
 		setContentView(R.layout.sensor_loading);
 
-
+		// Back Button
+		getActionBar().setHomeButtonEnabled(true);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 @Override
@@ -344,6 +346,18 @@ return true;
 				channelNames[0]=getString(R.string.channel_azimuth);
 				channelNames[1]=getString(R.string.channel_pitch);
 				channelNames[2]=getString(R.string.channel_roll);
+				break;
+			}
+			case Sensor.TYPE_STEP_COUNTER: {
+				channel = new XYSeries[1];
+				channelNames[0]="Steps";
+				renderer.setYTitle("steps");
+				break;
+			}
+			case Sensor.TYPE_STEP_DETECTOR: {
+				channel = new XYSeries[1];
+				channelNames[0]="Steps Detector";
+				renderer.setYTitle("steps detector");
 				break;
 			}
 			case 7:

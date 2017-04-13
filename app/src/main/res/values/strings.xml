@@ -5,10 +5,8 @@
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
 
-        <item >CPU</item>
         <item >Sensors</item>
         <item >Color Picker</item>
-        <item >Location</item>
         <item >Compass</item>
         <item >Device Info</item>
         <item >Settings</item>
@@ -18,10 +16,8 @@
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
-        <item>@drawable/ic_cpu</item>
         <item>@drawable/ic_sensor</item>
         <item>@drawable/ic_color</item>
-        <item>@drawable/ic_location</item>
         <item>@drawable/ic_compass</item>
         <item>@drawable/ic_device</item>
         <item>@drawable/ic_settings</item>
@@ -367,7 +363,9 @@
     <string name="contact_developer">Contact Developer</string>
     <string name="settings_share">Share</string>
     <string name="buy">Buy it on Google Play</string>
-    <string name="settings_about_s_tools">S Tools+ is completely free and Ad-Free. If you like then you can donate to me by purchasing the donate version from Google Play. I would really appreciate it.</string>
+    <string name="about_mechdome">About MechDome</string>
+    <string name="settings_about_s_tools">S Tools+ is completely free. If you like then you can donate to me by purchasing the donate version from Google Play. I would really appreciate it.</string>
+    <string name="settings_about_mechdome">This app is converted to iOS using MechDome.</string>
     <string name="source_code">Source Code</string>
     <string name="rate">Rate</string>
     <string name="unused_cpu_states">Unused CPU states</string>
@@ -376,11 +374,11 @@
     <string name="total_state_time">Total State Time</string>
 
     <string name="about_developer">Developer</string>
-    <string name="about_follow">Follow me on Google+</string>
+    <string name="about_follow">iOS version by MechDome</string>
     <string name="about_thanks">Thanks to these open source projects</string>
     <string name="action_ok">Okay</string>
     <string name="cpu_no_states">No states file found. Are you sure your phone is compatible?\n\nIf you are running a custom ROM or kernel, try contacting its developer to inform him that the states file is not readable.</string>
-    <string name="recommend_content">\nLet me recommend you this application for keeping track of your cpu,device sensors and much more\n\n</string>
+    <string name="recommend_content">\nLet me recommend you this application for keeping track of your device sensors and much more\n\n</string>
     <string name="recommend_choose">Choose one</string>
     <string name="toast_clipboard">%1$s Copied to Clipboard</string>
     <string name="cpu_deep_sleep">Deep Sleep</string>

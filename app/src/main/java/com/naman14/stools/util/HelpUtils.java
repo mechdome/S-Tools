@@ -175,16 +175,6 @@ public class HelpUtils {
             LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(
                     Context.LAYOUT_INFLATER_SERVICE);
             LinearLayout aboutBodyView = (LinearLayout) layoutInflater.inflate(R.layout.dialog_about, null);
-            TextView follow = (TextView)aboutBodyView.findViewById(R.id.follow);
-            follow.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(url1));
-                    startActivity(i);
-                }
-
-            });
 
             return new AlertDialog.Builder(getActivity())
                     .setView(aboutBodyView)

@@ -353,7 +353,7 @@ public class LocationActivity extends ActionBarActivity implements ActionBar.Tab
         mOrSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
 
         mTelephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-        mWifiManager = (WifiManager)getSystemService(Context.WIFI_SERVICE);
+        mWifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
 
     }

@@ -43,6 +43,7 @@ public class MainActivity extends ActionBarActivity {
 
 
     @Override
+    @SuppressWarnings("ResourceType")
 	protected void onCreate(Bundle savedInstanceState) {
 
 
@@ -60,13 +61,12 @@ public class MainActivity extends ActionBarActivity {
 
         navDrawerItems = new ArrayList<NavDrawerItem>();
 
+
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
         navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-        navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 
         navMenuIcons.recycle();
 
@@ -165,27 +165,20 @@ public class MainActivity extends ActionBarActivity {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new CpuFragment();
-                break;
-            case 1:
                 fragment = new SensorsFragment();
                 break;
-            case 2:
+            case 1:
                 fragment = new ColorPickerFragment();
                 break;
-            case 3:
-                fragment = new LocationFragment();
-                break;
-            case 4:
+            case 2:
                 fragment = new CompassFragment();
                 break;
-            case 5:
+            case 3:
                 fragment = new DeviceInfoFragment();
                 break;
-            case 6:
+            case 4:
                 fragment = new SettingsFragment();
                 break;
-
 
             default:
                 break;

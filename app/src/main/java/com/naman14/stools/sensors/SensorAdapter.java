@@ -116,6 +116,16 @@ public class SensorAdapter extends ArrayAdapter<Sensor> {
         description.setText(R.string.sensor_desc_13);
         break;
       }
+      case 18: {
+        icon.setImageResource(R.drawable.ic_sensor_13);
+        description.setText("Steps Detector");
+        break;
+      }
+      case 19: {
+        icon.setImageResource(R.drawable.ic_sensor_13);
+        description.setText("Steps Counter");
+        break;
+      }
       default: {
 
       }
