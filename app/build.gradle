@@ -23,5 +23,8 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.shamanland:fab:0.0.5'
+    compile 'com.google.firebase:firebase-core:11.2.0'
+    compile 'com.google.firebase:firebase-ads:11.2.0'
     compile 'com.mechdome:MechDome-About:+'
 }
+apply plugin: 'com.google.gms.google-services'
